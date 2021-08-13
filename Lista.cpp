@@ -10,7 +10,8 @@ public:
     nodo<T> *primero;
     nodo<T> *ultimo; 
     Lista(/* args */);
-    void insertar(T val);
+    void Encolar(T val);
+    void Desencolar();
     void imprimir();
 };
 
@@ -22,7 +23,16 @@ Lista<T>::Lista(/* args */)
 }
 
 template <typename T>
-void Lista<T>::insertar(T val) {
+void Lista<T>::Desencolar() {
+    if(this->primero != nullptr){
+        this->primero = this->primero->siguiente;
+    } else {
+        std::cout << "La cola esta vacia" << std::endl;
+    }
+}
+
+template <typename T>
+void Lista<T>::Encolar(T val) {
     nodo<T> *nuevo = new nodo<T>(val);
 
     if(this->primero == nullptr) {
@@ -37,7 +47,7 @@ void Lista<T>::insertar(T val) {
 template <typename T>
 void Lista<T>::imprimir() {
     nodo<T> *tmp = this->primero;
-
+    
     while(tmp != nullptr) {
         std::cout << tmp->valor << std::endl;
         tmp = tmp->siguiente;
